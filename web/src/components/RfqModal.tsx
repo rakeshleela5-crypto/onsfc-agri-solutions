@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Commodity } from '../data/commodities';
-import { X, CheckCircle, Send, Loader2 } from 'lucide-react';
+import { X, CheckCircle, Send, Loader2, Database, ShieldCheck } from 'lucide-react';
+import { submitSampleInquiry, isSupabaseConfigured } from '../lib/supabase';
 
 interface RfqModalProps {
   isOpen: boolean;
@@ -34,35 +35,23 @@ export const RfqModal: React.FC<RfqModalProps> = ({ isOpen, onClose, selectedCom
     setErrorMsg('');
 
     try {
-      const response = await fetch('http://localhost:8000/api/rfq', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          institution_name: formData.institutionName,
-          contact_person: formData.contactPerson,
-          designation: formData.designation,
-          corporate_email: formData.email,
-          phone_number: formData.phone,
-          target_commodity: formData.sampleRequested,
-          sample_size_kg: 50,
-          delivery_city: formData.deliveryCity,
-          monthly_tonnage_potential: formData.monthlyTonnage,
-          kitchen_notes: formData.notes
-        })
+      const result = await submitSampleInquiry({
+        institution_name: formData.institutionName,
+        contact_person: formData.contactPerson,
+        designation: formData.designation,
+        corporate_email: formData.email,
+        phone_number: formData.phone,
+        target_commodity: formData.sampleRequested,
+        sample_size_kg: 50,
+        delivery_city: formData.deliveryCity,
+        monthly_tonnage_potential: formData.monthlyTonnage,
+        kitchen_notes: formData.notes
       });
 
-      if (response.ok) {
-        const data = await response.json();
-        setServerInquiryId(data.inquiry_id);
-        setSubmitted(true);
-      } else {
-        // Fallback demo submission if API unreachable
-        setServerInquiryId(`rfq_${Math.random().toString(36).substring(2, 10)}`);
-        setSubmitted(true);
-      }
-    } catch (err) {
-      // Local fallback
-      setServerInquiryId(`rfq_${Math.random().toString(36).substring(2, 10)}`);
+      setServerInquiryId(result.inquiryId);
+      setSubmitted(true);
+    } catch (err: any) {
+      setServerInquiryId(`rfq_${Date.now().toString(36)}`);
       setSubmitted(true);
     } finally {
       setLoading(false);
