@@ -1,0 +1,12 @@
+{
+  "name": "onsfc-agri-solutions",
+  "private": true,
+  "workspaces": [
+    "web"
+  ],
+  "scripts": {
+    "build": "npm --prefix web run build && node -e \"const fs=require('fs'); fs.cpSync('web/dist', 'dist', {recursive: true});\"",
+    "dev": "npm --prefix web run dev",
+    "preview": "npm --prefix web run preview"
+  }
+}
