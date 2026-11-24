@@ -1,0 +1,30 @@
+{
+  "business": "ONSFC Agri Solutions Private Limited (Gooty Aggregation Hub)",
+  "unit": "quintal",
+  "price": 7500.0,
+  "variable": [
+    {"label": "Farm-gate procurement price (paid direct to farmer)", "cost": 6700.0},
+    {"label": "Village to Gooty pack-house freight (per quintal)", "cost": 120.0},
+    {"label": "Standardized 50kg HDPE/gunny bags + tagging", "cost": 60.0},
+    {"label": "Loading, unloading & handling (Hamali)", "cost": 80.0},
+    {"label": "De-stoning, screening & moisture shrink allowance (1.5%)", "cost": 110.0}
+  ],
+  "fixed_monthly": [
+    {"label": "1-Acre yard lease & dry godown shed", "cost": 25000.0},
+    {"label": "Warehouse supervisor & 3 sorting/loading staff", "cost": 55000.0},
+    {"label": "Power, weighing scale calibration & godown maintenance", "cost": 8000.0},
+    {"label": "Admin, software, WhatsApp gateway & mobile communications", "cost": 4000.0}
+  ],
+  "startup": [
+    {"label": "Shed security advance & lease deposit", "cost": 75000.0},
+    {"label": "Shed flooring, rainproofing & perimeter fencing", "cost": 150000.0},
+    {"label": "Certified digital electronic platform scale (2-tonne) & moisture meter", "cost": 45000.0},
+    {"label": "Grading sieves, de-stoning tables & stitchers", "cost": 60000.0},
+    {"label": "Company incorporation (MCA), APMC unified trader license & FSSAI", "cost": 35000.0},
+    {"label": "Opening working capital float & farmer settlement reserve", "cost": 200000.0}
+  ],
+  "days_per_month": 26,
+  "capacity_per_day": 150,
+  "plan_per_day": 60,
+  "ramp_per_day": [15, 25, 35, 45, 50, 55, 60, 65, 70, 75, 80, 80]
+}
